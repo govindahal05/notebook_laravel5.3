@@ -56,7 +56,7 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
-            'database' => 'laravel5.3',
+            'database' => 'notebook_app',
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', 'GO'),
             'charset' => 'utf8',

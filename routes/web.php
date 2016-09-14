@@ -28,7 +28,10 @@ Route::get('/', function () {
 Route::get('/bootstrap', function () {
     return view('firstbootstrap');
 });
-Route::get('/notebooks', function () {
-    return view('notebooks.index');
-});
+Route::get('/notebooks', ['as'=>'notebooks.index','uses'=>'NotebooksController@index']);
+Route::post('/notebooks', 'NotebooksController@store');
 
+Route::get('/notebooks/create', 'NotebooksController@create');
+Route::get('/notebooks/{notebook}', 'NotebooksController@edit');
+Route::put('/notebooks/{notebook}', 'NotebooksController@update');
+Route::delete('/notebooks/{notebook}', 'NotebooksController@destroy');
