@@ -11,27 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/', function () {
 
-    return view('frontpage');
+
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/', function () {
+
+        return view('frontpage');
+    });
+    Route::get('/notebooks', ['as'=>'notebooks.index','uses'=>'NotebooksController@index']);
+    Route::post('/notebooks', 'NotebooksController@store');
+
+    Route::get('/notebooks/create', 'NotebooksController@create');
+    Route::get('/notebooks/{notebook}', 'NotebooksController@edit');
+    Route::put('/notebooks/{notebook}', 'NotebooksController@update');
+    Route::delete('/notebooks/{notebook}', 'NotebooksController@destroy');
 });
 
 
-Route::get('/bootstrap', function () {
-    return view('firstbootstrap');
-});
-Route::get('/notebooks', ['as'=>'notebooks.index','uses'=>'NotebooksController@index']);
-Route::post('/notebooks', 'NotebooksController@store');
-
-Route::get('/notebooks/create', 'NotebooksController@create');
-Route::get('/notebooks/{notebook}', 'NotebooksController@edit');
-Route::put('/notebooks/{notebook}', 'NotebooksController@update');
-Route::delete('/notebooks/{notebook}', 'NotebooksController@destroy');
