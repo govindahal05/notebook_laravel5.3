@@ -24,7 +24,7 @@
         <div class="col-sm-6 col-md-3">
             <div class="card">
                 <div class="card-block">
-                    <a href="#">
+                    <a href="{{route('notebooks.show',$notebook->id)}}">
                         <h4 class="card-title">
                             {{$notebook->name}}
                         </h4>
@@ -34,7 +34,7 @@
                     <img alt="Responsive image" class="img-fluid" src="{{asset('img/notebook.jpg')}}"/>
                 </a>
                 <div class="card-block">
-                    <a class="card-link" href="/notebooks/{{$notebook->id}}">
+                    <a class="card-link" href="{{route('notebooks.edit',$notebook->id)}}">
                         Edit Notebook
                     </a>
                     <form action="/notebooks/{{$notebook->id}}" class="pull-xs-right5 card-link" method="POST" style="display:inline">

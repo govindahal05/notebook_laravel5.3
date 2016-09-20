@@ -22,6 +22,13 @@ class NotebooksController extends Controller
     {
         return view('notebooks.create');
     }
+    public function show($id)
+    {
+        //$notebook = Notebook::find($id);
+        $notebook = Notebook::where('id',$id)->first();
+        $notes = $notebook->notes;
+        return view('notes.index',compact('notes','notebook'));
+    }
     public function store(Request $request)
     {
         $dataInput = $request->all();
