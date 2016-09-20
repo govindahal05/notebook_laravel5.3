@@ -31,9 +31,9 @@ class NotebooksController extends Controller
     }
     public function store(Request $request)
     {
-        $dataInput = $request->all();
+        $this->validate($request,['name'=>'required|min:10|max:30']);
         $user =Auth::user();
-        $user->notebooks()->create($dataInput);
+        $user->notebooks()->create($request->all());
         //Notebook::create($dataInput);
 
         return redirect('/notebooks');
@@ -41,7 +41,7 @@ class NotebooksController extends Controller
     public function edit($id)
     {
         $user = Auth::user();
-        $notebook = $user->Notebook()->find($id);
+        $notebook = $user->notebooks()->find($id);
         //$notebook = Notebook::where('id',$id)->first();
         return view('notebooks.edit')->with('notebook',$notebook);
     }
@@ -49,7 +49,7 @@ class NotebooksController extends Controller
     {
         //$notebook = Notebook::where('id',$id)->first();
         $user = Auth::user();
-        $notebook = $user->notebook()->find($id);
+        $notebook = $user->notebooks()->find($id);
 
         $notebook->update($request->all());
 
@@ -60,7 +60,7 @@ class NotebooksController extends Controller
     {
         //$notebook = Notebook::where('id',$id)->first();
         $user = Auth::user();
-        $notebook = $user->notebook()->find($id);
+        $notebook = $user->notebooks()->find($id);
         $notebook->delete();
         return redirect('/notebooks');
     }

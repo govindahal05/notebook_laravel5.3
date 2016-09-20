@@ -37,8 +37,12 @@ class NotesController extends Controller
      */
     public function store(Request $request)
     {
-        $inputData = $request->all();
-        Note::create($inputData);
+        $this->validate($request,[
+            'title'=>'required|max:30|unique:notes,title',
+            'body'=>'required'
+
+        ]);
+        Note::create($request->all());
         $notebookId = $request->notebook_id;
         return redirect()->route('notebooks.show',compact('notebookId'));
 

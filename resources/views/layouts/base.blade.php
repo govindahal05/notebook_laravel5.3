@@ -14,7 +14,7 @@
             &#9776;
         </button>
         <div class="collapse navbar-toggleable-xs" id="navbar-header">
-            <a class="navbar-brand" href="#">NoteBook App</a>
+            <a class="navbar-brand" href="/">NoteBook App</a>
         </div>
         <!-- Right Side Of Navbar -->
         <ul class="dropdown-class">
